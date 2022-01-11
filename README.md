@@ -2,4 +2,4 @@
 
 Documentation:
 
-* https://docs.rocket.chat/api/rest-api
+* https://developer.rocket.chat/reference/api
