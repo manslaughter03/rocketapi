@@ -77,22 +77,22 @@ type errorResponse struct {
 
 // PostMessageResponse post message response
 type PostMessageResponse struct {
-	Success bool `json:"success"`
-	Timestamp int64 `json:"ts"`
-	Channel string `json:"channel"`
-	Message struct {
-		Alias string
-		Message string `json:"msg"`
-		ParseURLs bool `json:"parseUrls"`
-		Groupable bool `json:"groupable"`
+	Success   bool   `json:"success"`
+	Timestamp int64  `json:"ts"`
+	Channel   string `json:"channel"`
+	Message   struct {
+		Alias     string
+		Message   string `json:"msg"`
+		ParseURLs bool   `json:"parseUrls"`
+		Groupable bool   `json:"groupable"`
 		Timestamp string `json:"ts"`
-		User struct {
-			ID string `json:"_id"`
+		User      struct {
+			ID       string `json:"_id"`
 			Username string `json:"username"`
 		} `json:"u"`
-		RoomID string `json:"rid"`
+		RoomID    string `json:"rid"`
 		UpdatedAt string `json:"_updatedAt"`
-		ID string `json:"_id"`
+		ID        string `json:"_id"`
 	}
 }
 
@@ -152,7 +152,7 @@ type discussionGetResponse struct{}
 
 type loginErrResponse struct {
 	Status  string `json:"status"`
-	Error   int    `json:"error"`
+	Error   string `json:"error"`
 	Message string `json:"message"`
 }
 
@@ -189,7 +189,7 @@ func (chat *Chat) Login(username, password string) error {
 		if err != nil {
 			return err
 		}
-		return fmt.Errorf("Error status: %d, Message: %s", loginErrResp.Error, loginErrResp.Message)
+		return fmt.Errorf("Error status: %s, Message: %s", loginErrResp.Status, loginErrResp.Message)
 	}
 	err = json.NewDecoder(res.Body).Decode(&loginResp)
 	if err != nil {
